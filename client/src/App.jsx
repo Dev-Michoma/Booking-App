@@ -5,7 +5,7 @@ function App() {
   
   return (
 <div>
-  <header className="p-4">
+  <header className="p-4 flex justify-between">
     <a href="" className="flex items-center gap-1">
 
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-8 -rotate-90" >
@@ -16,9 +16,11 @@ function App() {
     </span>
 
     </a>
-    <div>
+    <div className="flex gap-2 border-gray-300 rounded-full py-2 px-4 shadow-md shadow-gray-500">
       <div>Anywhere</div>
+      <div className="border-l border-gray-300"></div>
       <div>  Any week</div>
+      <div className="border-l border-gray-300"></div>
       <div>  Any Guests</div>
       <button>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
