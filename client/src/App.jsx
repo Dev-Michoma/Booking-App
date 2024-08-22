@@ -20,7 +20,7 @@ function App() {
       <div>Anywhere</div>
       <div className="border-l border-gray-300"></div>
       <div>  Any week</div>
-      {/* <div className="border-l border-gray-300"></div> */}
+      <div className="border-l border-gray-300"></div>
       <div>  Any Guests</div>
       <button className ="bg-primary text-white p-1 rounded-full">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4">
