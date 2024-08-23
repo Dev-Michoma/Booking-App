@@ -3,7 +3,9 @@ import HeaderPage from "../Header";
 export  default function IndexPage(){
     return (
         <div>
-       <HeaderPage/>
+       {<HeaderPage/> }
+
+       
         </div>
     );
 }
