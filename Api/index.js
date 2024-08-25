@@ -17,7 +17,7 @@ app.use(cors({
 }));
 mongoose.connect(process.env.MONGO_URL);
 console.log(process.env.MONGO_URL);
-app.get ('/test' ,(req,res)=>{
+app.get ('/AfriSafari' ,(req,res)=>{
     res.json('test ok');
 });
 
