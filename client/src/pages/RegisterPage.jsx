@@ -10,9 +10,9 @@ export default function RegisterPage(){
                 <input type="password" placeholder="password"/>
                 <button  className="primary">register</button>
                 <div className="text-center py-2 text-gray-500">
-                    Dont have an account yet? 
-                    <Link  className="underline text-black" to={'/register'}>
-                    Register now
+                    Already a member? 
+                    <Link  className="underline text-black" to={'/login'}>
+                    Login
                     </Link>
 
                 </div>
