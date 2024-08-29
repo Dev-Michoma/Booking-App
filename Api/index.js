@@ -17,9 +17,9 @@ app.use(cors({
 }));
 mongoose.connect(process.env.MONGO_URL);
 console.log(process.env.MONGO_URL);
-// app.get ('/AfriSafari' ,(req,res)=>{
-//     res.json('test ok');
-// });
+app.get ('/AfriSafari' ,(req,res)=>{
+    res.json('test ok');
+ });
 
 app.post('/register' ,async (req,res) => {
    const {name ,email ,password} = req.body;
