@@ -15,6 +15,7 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization'],
 
 }));
+//addition of mongodb  connection string to .env
 mongoose.connect(process.env.MONGO_URL);
 console.log(process.env.MONGO_URL);
 app.get ('/AfriSafari' ,(req,res)=>{
