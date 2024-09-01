@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const cors = require("cors");
 const { default: mongoose } = require("mongoose");
 const User = require('./Models/User.js');
+const cookieParser = require('cookie-parser');
 const  bcrypt = require('bcryptjs');
 require('dotenv').config()
 const app = express();
@@ -10,6 +11,8 @@ const  bcryptSalt = bcrypt.genSaltSync(10);
 const jwtSecret = "jdjvjndjvnhvksndvjnjv";
 
 app.use(express.json());
+app.use(cookieParser());
+
 app.use(cors({
    credentials: true,
     origin: 'http://localhost:5173',
@@ -17,6 +20,7 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization'],
 
 }));
+
 //addition of mongodb  connection string to .env
 mongoose.connect(process.env.MONGO_URL);
 console.log(process.env.MONGO_URL);
@@ -66,7 +70,18 @@ app.post('/login', async (req, res) => {
 
 
 
-app.get('/profile' ,(req,res)=>{
-    res.json('user info')
-})
+app.get('/profile', (req, res) => {
+    const { token } = req.cookies;
+
+    if (token) {
+        jwt.verify(token, jwtSecret, {}, (err, user) => {
+            if (err) {
+                return res.status(403).json({ error: 'Invalid token' });
+            }
+            res.json(user);
+        });
+    } else {
+        res.status(401).json({ error: 'No token provided' });
+    }
+});
 app.listen(4000);
