@@ -50,7 +50,7 @@ app.post('/login', async (req, res) => {
            if (passOk) {
             jwt.sign({email:userDoc.email , id:userDoc._id},jwtSecret ,{} ,(err,token)=>{
                if(err) throw err;
-               res.cookie('token' ,token).json({ message: 'Login successful' });
+               res.cookie('token' ,token).json({ userDoc });
             });
                
            } else {
@@ -64,4 +64,9 @@ app.post('/login', async (req, res) => {
    }
 });
 
+
+
+app.get('/profile' ,(req,res)=>{
+    res.json('user info')
+})
 app.listen(4000);
