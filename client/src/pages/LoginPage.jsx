@@ -14,7 +14,7 @@ export default function LoginPage(){
     async function handleLogin(ev){
         ev.preventDefault();
         try{
-            await axios.post('/login' ,{email ,password} );
+            await axios.post('/login' ,{email ,password} ,{withCredentials: true});
             alert("Login successful")  
             setRedirect(true);
         }
