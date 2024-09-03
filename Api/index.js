@@ -52,7 +52,7 @@ app.post('/login', async (req, res) => {
        if (userDoc) {
            const passOk = bcrypt.compareSync(password, userDoc.password);
            if (passOk) {
-            jwt.sign({email:userDoc.email , id:userDoc._id ,name:userDoc.name},jwtSecret ,{} ,(err,token)=>{
+            jwt.sign({email:userDoc.email , id:userDoc._id ,name:userDoc},jwtSecret ,{} ,(err,token)=>{
                if(err) throw err;
                res.cookie('token' ,token).json({ userDoc });
             });
@@ -69,19 +69,23 @@ app.post('/login', async (req, res) => {
 });
 
 
-
+///Configuration  to send  cookies to the header.
 app.get('/profile', (req, res) => {
+    console.log(req.cookies); // Log cookies to verify token presence
     const { token } = req.cookies;
-
     if (token) {
-        jwt.verify(token, jwtSecret, {}, (err, user) => {
+        jwt.verify(token, jwtSecret, (err, user) => {
             if (err) {
-                return res.status(403).json({ error: 'Invalid token' });
+                console.error(err);
+                res.status(401).json({ error: 'Invalid token' });
+            } else {
+                res.json(user);
             }
-            res.json(user);
         });
     } else {
         res.status(401).json({ error: 'No token provided' });
     }
 });
+
+
 app.listen(4000);
