@@ -13,6 +13,11 @@ import { UserContextProvider } from './UserContext';
 
 
 axios.defaults.baseURL = 'http://localhost:4000';
+//To send cookies with Axios, you must set the withCredentials 
+//property to true. This tells Axios to send cookies along with 
+//the request to the server. Axios will not send cookies /
+//automatically without this setting, and your server
+// will not receive the necessary data for cookie-based authentication or session management.
 axios.defaults.withCredentials = true;
 function App() {
 
