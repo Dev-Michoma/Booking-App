@@ -69,7 +69,6 @@ app.post('/login', async (req, res) => {
 });
 
 
-///Configuration  to send  cookies to the header.
 app.get('/profile', (req, res) => {
     console.log(req.cookies); // Log cookies to verify token presence
     const { token } = req.cookies;

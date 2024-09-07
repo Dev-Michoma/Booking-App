@@ -11,10 +11,13 @@ export default function LoginPage(){
     const [password ,setPassword] =useState('');
     const [redirect ,setRedirect] = useState(false);
     const {setUser} = useContext(UserContext);
+
+
+    //when we are sending cookies between different hosts or patterns they should be accepted
     async function handleLogin(ev){
         ev.preventDefault();
         try{
-           const {data }= await axios.post('/login' ,{email ,password} ,{withCredentials: true});
+           const {data }= await axios.post('/login' ,{email ,password} );
            setUser(data);
             alert("Login successful")  
             setRedirect(true);
