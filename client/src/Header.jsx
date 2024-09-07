@@ -3,6 +3,7 @@ import {UserContext} from "./UserContext.jsx";
 import {useContext} from "react";
 export default function HeaderPage(){
   const {user} = useContext(UserContext);
+  console.log(user)
     return (
       
         <header className=" flex justify-between">
@@ -41,7 +42,7 @@ export default function HeaderPage(){
        {
         !!user && (
           <div>
-            {user.email}
+            {user.name}
           </div>
         )
        }
