@@ -16,7 +16,6 @@ export default function AccountPage(){
         subpage = 'profile';
       }
     if(!ready){
-        return 'Loading.....';
     }
 
      if (ready && !user){
@@ -28,7 +27,7 @@ export default function AccountPage(){
         let classes = 'py-7 px-6';
         if(type === subpage)
         {
-        classes += "bg-primary text-red rounded-full"
+        classes += "bg-red text-red rounded-full"
         }
        return classes;
     }
@@ -40,8 +39,16 @@ export default function AccountPage(){
         <Link  className={linkClasses('profile')} to={'/account/'}>Profile</Link>
         <Link className={linkClasses('bookings')} to={'/account/bookings'}>My Bookings</Link>
         <Link className= {linkClasses('places')}  to={'/account/places'}>My accomodations</Link>
-        
         </nav>
+        {
+          subpage === 'profile' && (
+            <div className="text-center">
+              Logged in as {user.name}  ({user.email}) <br/>
+             <button className="primary">Logout</button>
+
+            </div>
+          )
+        }
       </div>
 
     );
