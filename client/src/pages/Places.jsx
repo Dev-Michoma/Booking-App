@@ -8,7 +8,7 @@ export default function PlacesPage(){
     const [address ,setAddress] = useState('');
     const [addedPhotos ,setAddedPhotos] = useState('');
     const [photoLink ,setPhotoLink] = useState('');
-    const [Description ,setDescription] =useState('');
+    const [description ,setDescription] =useState('');
     const [perks ,setPerks] = useState('');
     const [extraInfo ,setExtraInfo] = useState('');
     const [checkIn ,setCheckIn] = useState('');
@@ -39,7 +39,7 @@ function preInput(header ,description){
 
     
     
-    console.log(action);
+    // console.log(action);
     return (
         <div>
 
@@ -84,7 +84,7 @@ function preInput(header ,description){
                     
                       <h2 className="text-2xl mt-4">Description</h2>
                      <p className="text-gray-500 text-sm">Description of the place</p>
-                            <textarea/>
+                            <textarea  value={description} onChange={ev => setDescription(ev.target.value)}/>
                     
                      <h2 className="text-2xl mt-4">Perks</h2>
                      <p className="text-gray-500 text-sm"> Select all the parks from your place</p>
@@ -94,7 +94,7 @@ function preInput(header ,description){
                      </div>
                      <h2 className="text-2xl mt-4">Extra Info</h2>
                      <p className="text-gray-500 text-sm"> These are the house Rules</p>
-                       <textarea/>
+                       <textarea value={extraInfo} onChange={ev => setExtraInfo(ev.target.value)}/>
                        <h2 className="text-2xl mt-4">Check in & Check out times ,max guests</h2>
                        <p className="text-gray-500 text-sm"> Add check in and Checout times</p>
 
@@ -102,15 +102,15 @@ function preInput(header ,description){
                       <div className="mt-4">
                         <h3>Check in times
                         </h3>
-                        <input type ="text" placeholder="14:00hrs"/>
+                        <input type ="text" placeholder="14:00hrs" value={checkIn} onChange={ev => setCheckIn(ev.target.value)}/>
                        </div>
                        <div className="mt-4">
                          <h3>Check out times</h3>
-                       <input type ="text" placeholder="14:00hrs"/>
+                       <input type ="text" placeholder="14:00hrs" value={checkout} onChange={ev => setCheckOut(ev.target.value)}/>
                        </div>
                        <div className="mt-4 -mb-1">
                         <h3>Max Guests</h3>
-                       <input type ="text" placeholder="2"/>
+                       <input type ="text" placeholder="2"  value={maxGuests} onChange={ev => setMaxGuests(ev.target.value)}/>
                        </div>
                       </div>
 
