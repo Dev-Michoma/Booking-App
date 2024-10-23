@@ -1,15 +1,20 @@
 import {useContext} from "react";
+import { useState } from "react";
 import {UserContext} from "../UserContext.jsx";
 import {Navigate ,Link ,useParams} from "react-router-dom";
 import axios from "axios";
 
 
 export default function AccountPage(){
-    const {ready ,user} = useContext(UserContext);
+
+    const [redirect , setRedirect] = useState(null);
+    const {ready ,user ,setUser} = useContext(UserContext);
 
 
     async function logout(){
       await axios.post('/logout');
+      setUser(null);
+      setRedirect('/');
     }
 
 
@@ -37,6 +42,11 @@ export default function AccountPage(){
         classes += "bg-red text-red rounded-full"
         }
        return classes;
+
+       if (redirect){
+        return <Navigate to={redirect}/>
+       }
+
     }
 
     return(
