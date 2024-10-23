@@ -1,5 +1,6 @@
 const express = require("express");
 const jwt = require('jsonwebtoken');
+
 const cors = require("cors");
 const { default: mongoose } = require("mongoose");
 const User = require('./Models/User.js');
@@ -86,5 +87,9 @@ app.get('/profile', (req, res) => {
     }
 });
 
+
+app.post('/logout' ,(req,res)=>{
+    res.cookie('token' ,'').json(true);
+});
 
 app.listen(4000);
