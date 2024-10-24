@@ -39,10 +39,16 @@ function preInput(header ,description){
 }
 
 ///Preventing Default and refresh Behaviour
- async  function addPhotoByLink(ev){
+async function addPhotoByLink(ev) {
     ev.preventDefault();
-    await axios.post('/upload-by-link' ,{link: photoLink});
-  }
+
+    const { data:filename } = await axios.post('/upload-by-link', { link: photoLink });
+    // const filename = data.filename; // Extract the filename from the response
+    setAddedPhotos(prev => {
+        return [...prev, filename];
+    });
+    setPhotoLink('');
+}
 
     
     
@@ -80,8 +86,15 @@ function preInput(header ,description){
                       </div>
 
                       <div className="mt-2 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+
+                        {
+                            addedPhotos.length > 0 && addedPhotos.map(link => (
+                                  <div>
+                                   {link}
+                                  </div>
+                            ))
+                        }
                       <button className="border gap-1 flex justify-center bg-transparent rounded-2xl p-8 text-3xl text-gray-600"> 
-                        
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-10">
                          <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 7.5h-.75A2.25 2.25 0 0 0 4.5 9.75v7.5a2.25 2.25 0 0 0 2.25 2.25h7.5a2.25 2.25 0 0 0 2.25-2.25v-7.5a2.25 2.25 0 0 0-2.25-2.25h-.75m0-3-3-3m0 0-3 3m3-3v11.25m6-2.25h.75a2.25 2.25 0 0 1 2.25 2.25v7.5a2.25 2.25 0 0 1-2.25 2.25h-7.5a2.25 2.25 0 0 1-2.25-2.25v-.75" />
                        </svg>
