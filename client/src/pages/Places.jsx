@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import {Navigate ,Link ,useParams} from "react-router-dom";
 import Perks from "./Perks";
 export default function PlacesPage(){
@@ -37,6 +38,12 @@ function preInput(header ,description){
     );
 }
 
+///Preventing Default and refresh Behaviour
+ async  function addPhotoByLink(ev){
+    ev.preventDefault();
+    await axios.post('/upload-by-link' ,{link: photoLink});
+  }
+
     
     
     // console.log(action);
@@ -69,7 +76,7 @@ function preInput(header ,description){
                       <p className="text-gray-500 text-sm"> More=Better </p>
                       <div className="flex gap-2">
                         <input type = "text"   value={photoLink} onChange={ev => setPhotoLink(ev.target.value)} placeholder={'Add using a Link ....jpg'}/>
-                        <button className="bg-gray-200 px-4 rounded-2xl grow">Add&nbsp;Photo</button>
+                        <button onClick={addPhotoByLink} className="bg-gray-200 px-4 rounded-2xl grow">Add&nbsp;Photo</button>
                       </div>
 
                       <div className="mt-2 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
