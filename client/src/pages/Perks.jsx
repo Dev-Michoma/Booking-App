@@ -10,7 +10,7 @@ export default function Perks ({selected ,onChange}){
     if(checked){
         onChange([...selected ,name]);
     }else {
-        onChange([...selected.filtre(selectedName => selectedName !== name)]);
+        onChange([...selected.filter(selectedName => selectedName !== name)]);
     }
 
     }
