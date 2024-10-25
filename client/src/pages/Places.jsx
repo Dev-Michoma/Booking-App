@@ -108,7 +108,7 @@ function uploadPhoto(ev){
                         {
                             addedPhotos.length > 0 && addedPhotos.map(link => (
                                   <div>
-                                   <img className=" rounded-2xl" src={'http://localhost:4000/uploads' + link} />
+                                   <img className=" rounded-2xl" src={'http://localhost:4000/uploads/' + link} />
                             
                                   </div>
                             ))
