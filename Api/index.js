@@ -6,6 +6,7 @@ const { default: mongoose } = require("mongoose");
 const User = require('./Models/User.js');
 const cookieParser = require('cookie-parser');
 const  bcrypt = require('bcryptjs');
+const multer = require('multer');
 require('dotenv').config()
 const app = express();
 const  bcryptSalt = bcrypt.genSaltSync(10);
@@ -104,5 +105,11 @@ app.post('/upload-by-link' ,async (req,res)=>{
         dest:__dirname +'/uploads/' + newName,
     });
     res.json(newName);
-})
+});
+
+
+const photosMiddleware = multer ({dest: 'uploads'});
+app.post('/upload',photosMiddleware.array('photos' ,100 ), (req,res) =>{
+  res.json(req.files);
+});
 app.listen(4000);
