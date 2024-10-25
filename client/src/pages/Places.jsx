@@ -90,7 +90,8 @@ async function addPhotoByLink(ev) {
                         {
                             addedPhotos.length > 0 && addedPhotos.map(link => (
                                   <div>
-                                   {link}
+                                   {/* <img className=" rounded-2xl" src={'http://localhost:4000/uploads' + link} /> */}
+                            {link}
                                   </div>
                             ))
                         }

@@ -13,7 +13,10 @@ const jwtSecret = "jdjvjndjvnhvksndvjnjv";
 
 app.use(express.json());
 app.use(cookieParser());
+const path = require('path');
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+console.log(__dirname);
 app.use(cors({
    credentials: true,
     origin: 'http://localhost:5173',
@@ -25,7 +28,7 @@ app.use(cors({
 //addition of mongodb  connection string to .env
 mongoose.connect(process.env.MONGO_URL);
 console.log(process.env.MONGO_URL);
-app.get ('/test' ,(req,res)=>{
+app.get ('/test/' ,(req,res)=>{
     res.json('test ok');
  });
 
@@ -95,7 +98,7 @@ app.post('/logout' ,(req,res)=>{
 
 app.post('/upload-by-link' ,async (req,res)=>{
     const {link} = req.body;
-    const newName = Date.now() + '.jpg';
+    const newName = 'photo'  + Date.now() + '.png';
     await imageDownloader.image({
         url: link,
         dest:__dirname +'/uploads/' + newName,
