@@ -90,16 +90,18 @@ async function addPhotoByLink(ev) {
                         {
                             addedPhotos.length > 0 && addedPhotos.map(link => (
                                   <div>
-                                   {/* <img className=" rounded-2xl" src={'http://localhost:4000/uploads' + link} /> */}
-                            {link}
+                                   <img className=" rounded-2xl" src={'http://localhost:4000/uploads' + link} />
+                            
                                   </div>
                             ))
                         }
-                      <button className="border gap-1 flex justify-center bg-transparent rounded-2xl p-8 text-3xl text-gray-600"> 
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-10">
-                         <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 7.5h-.75A2.25 2.25 0 0 0 4.5 9.75v7.5a2.25 2.25 0 0 0 2.25 2.25h7.5a2.25 2.25 0 0 0 2.25-2.25v-7.5a2.25 2.25 0 0 0-2.25-2.25h-.75m0-3-3-3m0 0-3 3m3-3v11.25m6-2.25h.75a2.25 2.25 0 0 1 2.25 2.25v7.5a2.25 2.25 0 0 1-2.25 2.25h-7.5a2.25 2.25 0 0 1-2.25-2.25v-.75" />
-                       </svg>
-                       upload
+                       <button className="border gap-1  justify-center bg-transparent rounded-2xl p-8 text-3xl text-gray-600"> 
+                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                       <path strokeLinecap="round" strokeLinejoin="round" d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z" />
+                        </svg>
+
+
+                       Upload
                         </button>
                       </div>
                     
