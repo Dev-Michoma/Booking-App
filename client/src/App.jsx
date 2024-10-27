@@ -8,6 +8,7 @@ import AccountPage from './pages/AccountPage';
 import PlacesPage from './pages/Places';
 import {useEffect } from "react"
 import Layout from './Layout';
+// import BookingsPage from './pages/BookingsPage'
 import axios from "axios";
 import {createContext} from "react";
 import { UserContextProvider } from './UserContext';
@@ -33,6 +34,7 @@ function App() {
     <Route path="/account/:subpage/:action" element={<AccountPage/>}/> */}
     <Route path="/account" element={<AccountPage/>}/>
     <Route path="/account/places" element={<PlacesPage/>}/>
+    {/* <Route path="/account/bookings" element={<BookingsPage/>}/> */}
     <Route path="/account/places/new" element={<PlacesformPage/>}/>
     </Route>
   </Routes>
