@@ -1,10 +1,13 @@
-import { useParams ,Link } from "react-router-dom";
+import { useParams ,Link ,useLocation } from "react-router-dom";
 import { useState } from "react";
 import {useContext} from "react";import 
 {UserContext} from "../UserContext.jsx";
 
 export default function AccountNav(){
     const [redirect , setRedirect] = useState(null);
+    const {pathname} = useLocation();
+    const subpage = pathname.split('/')?.[2];
+    console.log({subpage});
     const {ready ,user ,setUser} = useContext(UserContext);
     function linkClasses(type = null){
         let classes = 'inline-flex gap-1  py-7 px-6';
@@ -23,21 +26,21 @@ export default function AccountNav(){
 
 
     }
-    let {subpage}  = useParams();
-       console.log(subpage);
-       if(subpage ===undefined){
-        subpage = 'profile';
-       }
+    // let {subpage}  = useParams();
+    //    console.log(subpage);
+    //    if(subpage ===undefined){
+    //     subpage = 'profile';
+    //    }
 
-     if (!subpage) {
-        subpage = 'profile';
-      }
-    if(!ready){
-    }
+    //  if (!subpage) {
+    //     subpage = 'profile';
+    //   }
+    // if(!ready){
+    // }
 
-     if (ready && !user){
-         return <Navigate to={'/login'}/>
-     }
+    //  if (ready && !user){
+    //      return <Navigate to={'/login'}/>
+    //  }
        
     return(
         <nav className="w-full flex mt-8 justify-center gap-6 mb-8">
