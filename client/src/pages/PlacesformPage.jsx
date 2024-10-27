@@ -1,8 +1,59 @@
 
-
-
-
+import { useState } from "react";
+import axios from "axios";
+import {Navigate ,Link ,useParams} from "react-router-dom";
+import Perks from "./Perks";
+import PhotosUploader from "./PhotosUploader";
 export default function PlacesformPage(){
+
+    const[title ,setTitle] = useState('');
+    const [address ,setAddress] = useState('');
+    const [addedPhotos ,setAddedPhotos] = useState('');
+    const [photoLink ,setPhotoLink] = useState('');
+    const [description ,setDescription] =useState('');
+    const [perks ,setPerks] = useState('');
+    const [extraInfo ,setExtraInfo] = useState('');
+    const [checkIn ,setCheckIn] = useState('');
+    const [checkout ,setCheckOut] = useState('');
+    const [maxGuests ,setMaxGuests] =useState(100);
+    const [redirectToPlacesList ,setRedirectToPlacesList] = useState(false);
+
+    //function to add new places to the database:
+async function addNewPlace(ev){
+    ev.preventDefault();
+    await axios.post('/places ',
+      {title ,address ,addedPhotos,
+      description ,perks ,extraInfo,
+      checkIn ,checkout ,maxGuests});
+      setRedirectToPlacesList (true);
+  }
+  
+  
+  
+  
+  function inputHeader(text){
+      return(
+        <h2 className="text-2xl mt-4">{text}</h2>
+      );
+  }
+  
+  function inputDescription(text){
+      return(
+       <p className="text-gray-500">{text}</p>
+      );
+  }
+  
+  function preInput(header ,description){
+      return (
+        <>
+        {inputHeader(header)}
+        {inputDescription(description)}
+        
+        </>
+      );
+  }
+  
+    return(
     <div>
 <form onSubmit={addNewPlace}>
     {preInput('Title' , 'Title for your place should be short and catchy')}
@@ -55,5 +106,5 @@ export default function PlacesformPage(){
     <button className="primary my-4">Save</button>
   </div>
 </form>
-</div>
+</div>);
 }

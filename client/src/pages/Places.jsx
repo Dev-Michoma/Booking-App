@@ -6,23 +6,9 @@ import PhotosUploader from "./PhotosUploader";
 import PlacesformPage from "./PlacesformPage";
 export default function PlacesPage(){
     const {action ,id} = useParams();
-    // console.log({id});
-    const[title ,setTitle] = useState('');
-    const [address ,setAddress] = useState('');
-    const [addedPhotos ,setAddedPhotos] = useState('');
-    const [photoLink ,setPhotoLink] = useState('');
-    const [description ,setDescription] =useState('');
-    const [perks ,setPerks] = useState('');
-    const [extraInfo ,setExtraInfo] = useState('');
-    const [checkIn ,setCheckIn] = useState('');
-    const [checkout ,setCheckOut] = useState('');
-    const [maxGuests ,setMaxGuests] =useState(100);
-    // const [redirect ,setRedirect] = useState('');
     const [redirectToPlacesList ,setRedirectToPlacesList] = useState(false);
     const [places ,setPlaces] = useState([]);
-
      useEffect(()=> {
-     
         if(!id){
             return;
         }
@@ -46,51 +32,10 @@ export default function PlacesPage(){
        setPlaces(data);
        });
     },[])
+    if(redirectToPlacesList && action!== 'new'){
+        return <Navigate to={'/account/places'}/>
+    }
 
-//function to add new places to the database:
-async function addNewPlace(ev){
-  ev.preventDefault();
-  await axios.post('/places ',
-    {title ,address ,addedPhotos,
-    description ,perks ,extraInfo,
-    checkIn ,checkout ,maxGuests});
-    setRedirectToPlacesList (true);
-}
-
-
-
-
-if(redirectToPlacesList && action!== 'new'){
-    return <Navigate to={'/account/places'}/>
-}
-
-
-function inputHeader(text){
-    return(
-      <h2 className="text-2xl mt-4">{text}</h2>
-    );
-}
-
-function inputDescription(text){
-    return(
-     <p className="text-gray-500">{text}</p>
-    );
-}
-
-function preInput(header ,description){
-    return (
-      <>
-      {inputHeader(header)}
-      {inputDescription(description)}
-      
-      </>
-    );
-}
-
-///Preventing Default and refresh Behaviour
-
-    
-    // console.log(action);
     return (
         <div className="">
 
