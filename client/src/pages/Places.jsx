@@ -32,6 +32,7 @@ export default function PlacesPage(){
        setPlaces(data);
        });
     },[])
+    
     if(redirectToPlacesList && action!== 'new'){
         return <Navigate to={'/account/places'}/>
     }

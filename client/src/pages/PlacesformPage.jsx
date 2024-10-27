@@ -28,7 +28,9 @@ async function addNewPlace(ev){
       setRedirectToPlacesList (true);
   }
   
-  
+  if(redirectToPlacesList){
+    return <Navigate to={'/account/places'}/>
+  }
   
   
   function inputHeader(text){
