@@ -4,6 +4,7 @@ import axios from "axios";
 import {Navigate ,Link ,useParams} from "react-router-dom";
 import Perks from "./Perks";
 import PhotosUploader from "./PhotosUploader";
+import AccountNav from "./AccountNav";
 export default function PlacesformPage(){
 
     const[title ,setTitle] = useState('');
@@ -58,6 +59,7 @@ async function addNewPlace(ev){
     return(
     <div>
 <form onSubmit={addNewPlace}>
+    <AccountNav/>
     {preInput('Title' , 'Title for your place should be short and catchy')}
  {/* <h2 className="text-2xl mt-4">Title</h2>
  <p className="text-gray-500 text-sm">Title for your place should be short and catchy</p> */}

@@ -4,6 +4,7 @@ import {Navigate ,Link ,useParams} from "react-router-dom";
 import Perks from "./Perks";
 import PhotosUploader from "./PhotosUploader";
 import PlacesformPage from "./PlacesformPage";
+import AccountNav from "./AccountNav";
 export default function PlacesPage(){
     const {action ,id} = useParams();
     const [redirectToPlacesList ,setRedirectToPlacesList] = useState(false);
@@ -32,14 +33,14 @@ export default function PlacesPage(){
        setPlaces(data);
        });
     },[])
-    
+
     if(redirectToPlacesList && action!== 'new'){
         return <Navigate to={'/account/places'}/>
     }
 
     return (
         <div className="">
-
+                 <AccountNav/>
             {action !== 'new' && (
                   <div className="text-center">
                   <Link className=" inline-flex gap-1 bg-primary text-white py-2 px-4 rounded-full" to={'/account/places/new'}>
