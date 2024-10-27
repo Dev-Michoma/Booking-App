@@ -139,7 +139,7 @@ function preInput(header ,description){
             <div className="mt-6">
                 {
                     places.length > 0 && places.map(place => (
-                        <div className="flex gap-4 bg-gray-200 p-2 rounded-2xl" key={place._id}>
+                        <Link to={'/account/places/' + place._id} className="flex gap-4 bg-gray-200 p-2 cursor-pointer rounded-2xl" key={place._id}>
 
                             <div className="w-32 h-32 bg-gray-100 grow shrink-0">
                              {place.photos.length > 0 && (
@@ -150,7 +150,7 @@ function preInput(header ,description){
                             <h2 className="text-xl ">{place.title}</h2>
                             <p className="text-sm mt-2">{place.description}</p>
                             </div>
-                        </div>
+                        </Link>
                     ))
                 }
             </div>
