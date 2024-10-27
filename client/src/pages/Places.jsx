@@ -107,7 +107,7 @@ function uploadPhoto(ev){
 
                         {
                             addedPhotos.length > 0 && addedPhotos.map(link => (
-                                  <div className="h-32 flex">
+                                  <div className="h-32 flex" key={link}>
                                    <img className=" rounded-2xl" src={'http://localhost:4000/uploads/' + link} />
                             
                                   </div>
