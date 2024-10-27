@@ -16,7 +16,7 @@ export default function PlacesformPage(){
     const [checkIn ,setCheckIn] = useState('');
     const [checkout ,setCheckOut] = useState('');
     const [maxGuests ,setMaxGuests] =useState(100);
-    // const [redirectToPlacesList ,setRedirectToPlacesList] = useState(false);
+    const [redirectToPlacesList ,setRedirectToPlacesList] = useState(false);
 
     //function to add new places to the database:
 async function addNewPlace(ev){
@@ -25,7 +25,7 @@ async function addNewPlace(ev){
       {title ,address ,addedPhotos,
       description ,perks ,extraInfo,
       checkIn ,checkout ,maxGuests});
-    //   setRedirectToPlacesList (true);
+      setRedirectToPlacesList (true);
   }
   
   
