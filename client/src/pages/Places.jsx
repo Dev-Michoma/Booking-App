@@ -40,36 +40,7 @@ function preInput(header ,description){
 }
 
 ///Preventing Default and refresh Behaviour
-// async function addPhotoByLink(ev) {
-//     ev.preventDefault();
 
-//     const { data:filename } = await axios.post('/upload-by-link', { link: photoLink });
-//     // const filename = data.filename; // Extract the filename from the response
-//     setAddedPhotos(prev => {
-//         return [...prev, filename];
-//     });
-//     setPhotoLink('');
-// }
-
-// function uploadPhoto(ev){
-//     const files = ev.target.files;
-//     const data = new FormData();
-
-//     for (let i=0 ; i < files.length ; i++){
-//         data.append('photos' ,files[i])
-//     }
-//     // data.set('photos[]'  ,files);
-//     axios.post('/upload' ,data ,{
-//         headers: {"Content-Type" : 'multipart/form-data'}
-
-//     }). then(response => {
-//         const {data:filename} = response;
-//         setAddedPhotos(prev =>{
-//          return [...prev ,filename];
-//         })
-//     })
-//     console.log({files});
-// }  
     
     // console.log(action);
     return (

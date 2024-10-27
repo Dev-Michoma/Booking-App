@@ -1,6 +1,9 @@
 
 import { useState } from "react";
-export default function PhotosUploader(addedPhotos ,onChange){
+import axios from "axios";
+import {Navigate ,Link ,useParams} from "react-router-dom";
+import Perks from "./Perks";
+export default function PhotosUploader({addedPhotos ,onChange}){
        
     // const [addedPhotos ,setAddedPhotos] = useState('');
     const [photoLink ,setPhotoLink] = useState('');
