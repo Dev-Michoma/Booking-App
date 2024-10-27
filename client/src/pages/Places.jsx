@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import axios from "axios";
 import {Navigate ,Link ,useParams} from "react-router-dom";
 import Perks from "./Perks";
@@ -16,6 +16,14 @@ export default function PlacesPage(){
     const [checkout ,setCheckOut] = useState('');
     const [maxGuests ,setMaxGuests] =useState(100);
     const [redirect ,setRedirect] = useState('');
+    const [places ,setPlaces] = useState([]);
+
+
+    useEffect(()=> {
+       axios.get('/listplaces').then(({data})=>{
+       setPlaces(data);
+       });
+    },[])
 
 async function addNewPlace(ev){
   ev.preventDefault();
@@ -29,7 +37,7 @@ async function addNewPlace(ev){
 
 
 if(redirect){
-    return <Navigate to={redirect}/>
+    return <Navigate to={'/account/places'}/>
 }
 
 
@@ -60,7 +68,7 @@ function preInput(header ,description){
     
     // console.log(action);
     return (
-        <div>
+        <div className="">
 
             {action !== 'new' && (
                   <div className="text-center">
@@ -128,7 +136,24 @@ function preInput(header ,description){
                 </div>
             )}
           
-            my places
+            <div className="mt-6">
+                {
+                    places.length > 0 && places.map(place => (
+                        <div className="flex gap-4 bg-gray-200 p-2 rounded-2xl" key={place._id}>
+
+                            <div className="w-32 h-32 bg-gray-100 grow shrink-0">
+                             {place.photos.length > 0 && (
+                                <img src={place.photos[0]} alt=""/>
+                             )}
+                            </div>
+                            <div className="grow-0 shrink">
+                            <h2 className="text-xl ">{place.title}</h2>
+                            <p className="text-sm mt-2">{place.description}</p>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
         </div>
     )
 }
