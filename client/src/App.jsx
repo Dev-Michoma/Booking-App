@@ -11,8 +11,6 @@ import axios from "axios";
 import {createContext} from "react";
 import { UserContextProvider } from './UserContext';
 
-
-
 axios.defaults.baseURL = 'http://localhost:4000';
 //To send cookies with Axios, you must set the withCredentials 
 //property to true. This tells Axios to send cookies along with 
