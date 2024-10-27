@@ -151,4 +151,10 @@ app.get('/listplaces' ,(req,res) =>{
    res.json(await Place.find({owner:id}));
  });
 });
+
+
+app.get('/places/:id',async (req,res) =>{
+ const {id} =req.params;
+  res.json(await Place.findById(id))
+})
 app.listen(4000);

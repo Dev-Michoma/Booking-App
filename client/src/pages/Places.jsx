@@ -4,7 +4,8 @@ import {Navigate ,Link ,useParams} from "react-router-dom";
 import Perks from "./Perks";
 import PhotosUploader from "./PhotosUploader";
 export default function PlacesPage(){
-    const {action} = useParams();
+    const {action ,id} = useParams();
+    console.log({id});
     const[title ,setTitle] = useState('');
     const [address ,setAddress] = useState('');
     const [addedPhotos ,setAddedPhotos] = useState('');
@@ -18,6 +19,25 @@ export default function PlacesPage(){
     const [redirect ,setRedirect] = useState('');
     const [places ,setPlaces] = useState([]);
 
+     useEffect(()=> {
+     
+        if(!id){
+            return;
+        }
+        axios.get('/places/ '+ id).then(response => {
+            const {data} =response;
+            setTitle(data.title);
+            setAddress(data.address);
+            setAddedPhotos(data.photos);
+            setDescription(data.description);
+            setPerks(data.perks);
+            setExtraInfo(data.extraInfo);
+            setCheckIn(data.checkIn);
+            setCheckOut(data.checkout);
+            setMaxGuests(data.maxGuests);
+        })
+     },[id]
+     );
 
     useEffect(()=> {
        axios.get('/listplaces').then(({data})=>{
