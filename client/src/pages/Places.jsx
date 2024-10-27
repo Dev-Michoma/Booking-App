@@ -5,7 +5,6 @@ import Perks from "./Perks";
 import PhotosUploader from "./PhotosUploader";
 export default function PlacesPage(){
     const {action} = useParams();
-
     const[title ,setTitle] = useState('');
     const [address ,setAddress] = useState('');
     const [addedPhotos ,setAddedPhotos] = useState('');
@@ -15,7 +14,24 @@ export default function PlacesPage(){
     const [extraInfo ,setExtraInfo] = useState('');
     const [checkIn ,setCheckIn] = useState('');
     const [checkout ,setCheckOut] = useState('');
-    const [maxGuests ,setMaxGuests] =useState(2);
+    const [maxGuests ,setMaxGuests] =useState(100);
+    const [redirect ,setRedirect] = useState('');
+
+async function addNewPlace(ev){
+  ev.preventDefault();
+  await axios.post('/places ',
+    {title ,address ,addedPhotos,
+    description ,perks ,extraInfo,
+    checkIn ,checkout ,maxGuests});
+
+    setRedirect ('/account/places');
+}
+
+
+if(redirect){
+    return <Navigate to={redirect}/>
+}
+
 
 function inputHeader(text){
     return(
@@ -59,7 +75,7 @@ function preInput(header ,description){
 
             {action === 'new' && (
                 <div>
-                    <form>
+                    <form onSubmit={addNewPlace}>
                         {preInput('Title' , 'Title for your place should be short and catchy')}
                      {/* <h2 className="text-2xl mt-4">Title</h2>
                      <p className="text-gray-500 text-sm">Title for your place should be short and catchy</p> */}
