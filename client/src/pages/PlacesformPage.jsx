@@ -1,13 +1,14 @@
 
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import axios from "axios";
 import {Navigate ,Link ,useParams} from "react-router-dom";
 import Perks from "./Perks";
 import PhotosUploader from "./PhotosUploader";
 import AccountNav from "./AccountNav";
 export default function PlacesformPage(){
-
-    const[title ,setTitle] = useState('');
+     const {id} = useParams();
+     console.log({id});
+     const[title ,setTitle] = useState('');
     const [address ,setAddress] = useState('');
     const [addedPhotos ,setAddedPhotos] = useState('');
     const [photoLink ,setPhotoLink] = useState('');
@@ -18,6 +19,25 @@ export default function PlacesformPage(){
     const [checkout ,setCheckOut] = useState('');
     const [maxGuests ,setMaxGuests] =useState(100);
     const [redirectToPlacesList ,setRedirectToPlacesList] = useState(false);
+
+
+    useEffect(( ) =>{
+     if(!id) {
+        return;
+     }
+     axios.get('/places/' + id).then(response => {
+           const {data} = response;
+           setTitle(data.title);
+           setAddress(data.address);
+           setAddedPhotos(data.photos);
+           setDescription(data.description);
+           setPerks(data.perks);
+           setExtraInfo(data.extraInfo);
+           setCheckIn(data.checkIn);
+           setCheckOut(data.checkout);
+           setMaxGuests(data.maxGuests);
+     });
+    },[id]);
 
     //function to add new places to the database:
 async function addNewPlace(ev){
