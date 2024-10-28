@@ -9,16 +9,16 @@ export default function PlacesformPage(){
      const {id} = useParams();
      console.log({id});
      const[title ,setTitle] = useState('');
-    const [address ,setAddress] = useState('');
-    const [addedPhotos ,setAddedPhotos] = useState('');
-    const [photoLink ,setPhotoLink] = useState('');
-    const [description ,setDescription] =useState('');
-    const [perks ,setPerks] = useState('');
-    const [extraInfo ,setExtraInfo] = useState('');
-    const [checkIn ,setCheckIn] = useState('');
-    const [checkout ,setCheckOut] = useState('');
-    const [maxGuests ,setMaxGuests] =useState(100);
-    const [redirectToPlacesList ,setRedirectToPlacesList] = useState(false);
+     const [address ,setAddress] = useState('');
+     const [addedPhotos ,setAddedPhotos] = useState('');
+     const [photoLink ,setPhotoLink] = useState('');
+     const [description ,setDescription] =useState('');
+     const [perks ,setPerks] = useState('');
+     const [extraInfo ,setExtraInfo] = useState('');
+     const [checkIn ,setCheckIn] = useState('');
+     const [checkout ,setCheckOut] = useState('');
+     const [maxGuests ,setMaxGuests] =useState(100);
+     const [redirectToPlacesList ,setRedirectToPlacesList] = useState(false);
 
 
     useEffect(( ) =>{
@@ -42,13 +42,28 @@ export default function PlacesformPage(){
     //function to add new places to the database:
 async function addNewPlace(ev){
     ev.preventDefault();
+
+    const placeData = {
+    title ,address ,addedPhotos,
+    description ,perks ,extraInfo,
+    checkIn ,checkout ,maxGuests,
+     };
+
+
+   if (id) {
+    await axios.put ('/places' ,{
+
+        id, ...placeData });
+        setRedirectToPlacesList (true);
+    }
+   
+ else {
+
     await axios.post('/places ',
-      {title ,address ,addedPhotos,
-      description ,perks ,extraInfo,
-      checkIn ,checkout ,maxGuests});
+      {...placeData});
       setRedirectToPlacesList (true);
   }
-  
+}
   if(redirectToPlacesList){
     return <Navigate to={'/account/places'}/>
   }
