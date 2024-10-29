@@ -6,7 +6,7 @@ import Perks from "./Perks";
 import PhotosUploader from "./PhotosUploader";
 import AccountNav from "./AccountNav";
 export default function PlacesformPage(){
-     const {id} = useParams();
+     const {id} = useParams('');
      console.log({id});
      const[title ,setTitle] = useState('');
      const [address ,setAddress] = useState('');
@@ -27,15 +27,15 @@ export default function PlacesformPage(){
      }
      axios.get('/places/' + id).then(response => {
            const {data} = response;
-           setTitle(data.title);
-           setAddress(data.address);
-           setAddedPhotos(data.photos);
-           setDescription(data.description);
-           setPerks(data.perks);
-           setExtraInfo(data.extraInfo);
-           setCheckIn(data.checkIn);
-           setCheckOut(data.checkout);
-           setMaxGuests(data.maxGuests);
+           setTitle(data.title || '');
+           setAddress(data.address || '');
+           setAddedPhotos(data.photos || []);
+           setDescription(data.description || '');
+           setPerks(data.perks || []);
+           setExtraInfo(data.extraInfo || '');
+           setCheckIn(data.checkIn) || '';
+           setCheckOut(data.checkout || '');
+           setMaxGuests(data.maxGuests || 100);
      });
     },[id]);
 
