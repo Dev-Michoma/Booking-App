@@ -26,21 +26,7 @@ export default function AccountNav(){
 
 
     }
-    // let {subpage}  = useParams();
-    //    console.log(subpage);
-    //    if(subpage ===undefined){
-    //     subpage = 'profile';
-    //    }
-
-    //  if (!subpage) {
-    //     subpage = 'profile';
-    //   }
-    // if(!ready){
-    // }
-
-    //  if (ready && !user){
-    //      return <Navigate to={'/login'}/>
-    //  }
+   
        
     return(
         <nav className="w-full flex mt-8 justify-center gap-6 mb-8">

@@ -5,6 +5,17 @@ import Perks from "./Perks";
 import PhotosUploader from "./PhotosUploader";
 import PlacesformPage from "./PlacesformPage";
 import AccountNav from "./AccountNav";
+
+
+
+
+import {Route ,Routes}  from "react-router-dom";;
+
+
+
+
+
+
 export default function PlacesPage(){
     const {action ,id} = useParams();
     const [redirectToPlacesList ,setRedirectToPlacesList] = useState(false);
@@ -57,15 +68,19 @@ export default function PlacesPage(){
                   <PlacesformPage/>
             )}
           
-            <div className="mt-6">
+            <div className="mt-4">
                 {
                     places.length > 0 && places.map(place => (
                         <Link to={'/account/places/' + place._id} className="flex gap-4 bg-gray-200 p-2 cursor-pointer rounded-2xl" key={place._id}>
 
-                            <div className="w-32 h-32 bg-gray-100 grow shrink-0">
-                             {place.photos.length > 0 && (
-                                <img src={place.photos[0]} alt=""/>
-                             )}
+                            <div className="w-32  h-32 bg-gray-100 grow shrink-0">
+                             {
+                                
+                             place.photos.length > 0 && (
+                            <img src={'http://localhost:4000/uploads/'+ place.photos[0]} alt="No image"/>
+                             )
+
+                             }
                             </div>
                             <div className="grow-0 shrink">
                             <h2 className="text-xl ">{place.title}</h2>
