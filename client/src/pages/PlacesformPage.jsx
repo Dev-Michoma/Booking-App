@@ -110,7 +110,7 @@ async function addNewPlace(ev){
 
   <h2 className="text-2xl mt-4">Description</h2>
  <p className="text-gray-500 text-sm">Description of the place</p>
-        <textarea  value={description} onChange={ev => setDescription(ev.target.value)}/>
+        <textarea rows="4" cols="15" value={description} onChange={ev => setDescription(ev.target.value)}/>
 
  <h2 className="text-2xl mt-4">Perks</h2>
  <p className="text-gray-500 text-sm"> Select all the parks from your place</p>
