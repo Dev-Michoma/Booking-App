@@ -81,15 +81,14 @@ export default function PlacesPage(){
                 <Link to={'/account/places/' + place._id} className="flex gap-4 bg-gray-200 p-2 cursor-pointer rounded-2xl" key={place._id}>
                     <div className="w-32 h-32 bg-gray-100 grow shrink-0">
                         {
-                        //    place.photos.length > 0 && (
-                        //     <img
-                        //         className="object-cover"
-                        //         src={`http://localhost:4000/uploads/${place.photos[0]}`}
-                        //         alt="Image not Showing"
-                        //     />
-                        // )
-                            // Use these momentarily then Solve the Bug Later
-                            // <img className="object-cover" src="https://photos.tpn.to/tp/fq/tr/oj/653x490.webp" alt="W3Schools.com"></img>
+                           place.photos.length > 0 && (
+                            <img
+                                className="object-cover"
+                                src={`http://localhost:4000/uploads/${place.photos[0]}`}
+                                alt="Image not Showing"
+                            />
+                        )
+                          
                         }
                     </div>
                     <div className="grow-0 shrink">
