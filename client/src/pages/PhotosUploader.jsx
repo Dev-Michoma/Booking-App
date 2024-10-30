@@ -39,6 +39,14 @@ function uploadPhoto(ev){
     })
     console.log({files});
 }  
+
+  function removePhoto(filename){
+
+    onChange([...addedPhotos.filter(photo => photo !==filename)]);
+  }
+
+
+
     return(      
         <>
          <div className="flex gap-2">
