@@ -4,7 +4,10 @@ const placeSchema = new mongoose.Schema({
     title: String,
     address:String,
     description: String,
-    photos:[String],
+    // When you're setting the photos field, 
+    //ensure you're assigning an array of strings directly.
+    // It should not be a string or a nested array.
+    photos:[''], //Make sure dont forget to put those two semicolons for it to be interpreted as an array
     perks: [String],
     extraInfo: String,
     checkIn: Number,
