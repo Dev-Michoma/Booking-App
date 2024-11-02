@@ -13,7 +13,7 @@ export  default function IndexPage(){
         <div className="grid grid-cols-4 gap-4 md:grid-cols-3 lg:grid-cols-6 mt-8 " >
           {
             landingpages.length > 0 && landingpages.map(landingpage => (
-                <div key={landingpage.id}>
+                <Link to={'/landingpage/ '+ landingpage._id}>
                     
                     <div className="bg-gray-500 rounded-2xl flex">
                     {landingpage.photos?.[0] &&(
@@ -28,7 +28,7 @@ export  default function IndexPage(){
                         <h3 className="font-bold">{landingpage.address}</h3>
                     
                     </div>
-                </div>
+                </Link>
             ))
           }
         </div>
