@@ -25,6 +25,7 @@ export  default function IndexPage(){
                     <div className="mt-2">
 
                         <h2 className="text-sm">{landingpage.title}</h2>
+                        <h3 className="font-bold">{landingpage.address}</h3>
                     
                     </div>
                 </div>

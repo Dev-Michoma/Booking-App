@@ -9,6 +9,7 @@ export default function PlacesformPage(){
      const {id} = useParams('');
      console.log({id});
      const[title ,setTitle] = useState('');
+     const[price ,setPrice] = useState('500');
      const [address ,setAddress] = useState('');
      const [addedPhotos ,setAddedPhotos] = useState('');
      const [photoLink ,setPhotoLink] = useState('');
@@ -137,6 +138,11 @@ async function addNewPlace(ev){
    <div className="mt-4 -mb-1">
     <h3>Max Guests</h3>
    <input type ="text" placeholder="2"  value={maxGuests} onChange={ev => setMaxGuests(ev.target.value)}/>
+   </div>
+
+   <div className="mt-4 -mb-1">
+    <h3>Price Per Night</h3>
+   <input type ="text" placeholder="2"  value={price} onChange={ev => setPrice(ev.target.value)}/>
    </div>
   </div>
 

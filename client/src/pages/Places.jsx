@@ -36,6 +36,7 @@ export default function PlacesPage(){
             setCheckIn(data.checkIn);
             setCheckOut(data.checkout);
             setMaxGuests(data.maxGuests);
+            setPrice(data.price);
         })
      },[id]
      );
