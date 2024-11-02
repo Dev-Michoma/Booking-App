@@ -13,7 +13,12 @@ export  default function IndexPage(){
         <div>
           {
             landingpages.length > 0 && landingpages.map(landingpage => (
-                <div>
+                <div key={landingpage.id}>
+                    
+                    {landingpage.photos?.[0] &&(
+                        <img src={'http://localhost:4000/uploads/'+landingpage.photos?.[0]} alt=""/>
+                    )}
+                    
                     {landingpage.title}
                 </div>
             ))
