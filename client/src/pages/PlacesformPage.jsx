@@ -9,7 +9,7 @@ export default function PlacesformPage(){
      const {id} = useParams('');
      console.log({id});
      const[title ,setTitle] = useState('');
-     const[price ,setPrice] = useState('500');
+     const[price ,setPrice] = useState('');
      const [address ,setAddress] = useState('');
      const [addedPhotos ,setAddedPhotos] = useState('');
      const [photoLink ,setPhotoLink] = useState('');
@@ -37,6 +37,7 @@ export default function PlacesformPage(){
            setCheckIn(data.checkIn) || '';
            setCheckOut(data.checkout || '');
            setMaxGuests(data.maxGuests || 100);
+           setPrice(data.price);
      });
     },[id]);
 
@@ -47,7 +48,7 @@ async function addNewPlace(ev){
     const placeData = {
     title ,address ,addedPhotos,
     description ,perks ,extraInfo,
-    checkIn ,checkout ,maxGuests,
+    checkIn ,checkout ,maxGuests,price,
      };
 
 
@@ -142,7 +143,7 @@ async function addNewPlace(ev){
 
    <div className="mt-4 -mb-1">
     <h3>Price Per Night</h3>
-   <input type ="text" placeholder="2"  value={price} onChange={ev => setPrice(ev.target.value)}/>
+   <input type ="text" placeholder=""  value={price} onChange={ev => setPrice(ev.target.value)}/>
    </div>
   </div>
 

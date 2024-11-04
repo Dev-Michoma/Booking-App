@@ -170,6 +170,7 @@ app.put ('/places' , async (req,res)=>{
     jwt.verify(token ,jwtSecret ,{} ,async (err ,userData)=>{
         const placeDoc = await Place.findById(id);
             if (userData.id === placeDoc.owner.toString()){
+                console.log({price})
                 placeDoc.set({
                     title ,address ,photos:addedPhotos,
                     description ,perks ,extraInfo ,checkIn ,checkOut ,maxGuests, price,
