@@ -22,10 +22,23 @@ export default function PlacePage(){
 
      if(showAllPhotos){
      return(
-     <div className=""> 
-     show photos
+     <div className="absolute bg-white min-w-full min-h-screen"> 
+
+    
+                   {
+        
+                           place.photos.length > 0 && (
+                          <div >  <img
+                                className="object-cover aspect-square"
+                                src={`http://localhost:4000/uploads/${place.photos[0]}`}
+                                alt="Image not Showing"
+                            /> </div>
+                        )
+                          
+                        }
      </div>);
      }
+    
  //Research between the difference of Relative and absolute
     return(
       <div className="mt-4 bg-gray-100 -mx-4 px-8 py-2">
