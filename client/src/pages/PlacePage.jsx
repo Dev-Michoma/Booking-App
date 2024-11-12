@@ -22,10 +22,23 @@ export default function PlacePage(){
 
      if(showAllPhotos){
      return(
-     <div className="absolute bg-white min-w-full min-h-screen"> 
+     <div className="absolute bg-white  inset-0 min-h-screen"> 
 
-    
-                   {
+    <div className="p-8 grid gap-4">
+
+      <div >
+
+        <h2>Photos of {place.title}</h2>
+         {/* We make the button fixed even if we are scrolling we are able to still see the close photos */}
+        <button className="flex gap-1 py-2 px-4 rounded-2xl fixed shadow shadow-black">
+
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+           </svg>
+           Close Photos
+        </button>
+      </div>
+                      {
         
                            place.photos.length > 0 && (
                           <div >  <img
@@ -36,6 +49,10 @@ export default function PlacePage(){
                         )
                           
                         }
+
+
+           </div>
+
      </div>);
      }
     
@@ -59,7 +76,7 @@ export default function PlacePage(){
                           
                         }
             </div>
-            <div  className=" grid gap-2">
+            <div  className=" grid">
             {
                            place.photos.length > 0 && (
                             <img
@@ -75,7 +92,7 @@ export default function PlacePage(){
                         {
                            place.photos.length > 0 && (
                             <img
-                                className="object-cover aspect-square"
+                                className="object-cover aspect-square relative top-2"
                                 src={`http://localhost:4000/uploads/${place.photos[0]}`}
                                 alt="Image not Showing"
                             />
