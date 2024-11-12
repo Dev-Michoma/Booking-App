@@ -28,9 +28,9 @@ export default function PlacePage(){
 
       <div >
 
-        <h2>Photos of {place.title}</h2>
+        <h2 className="text-3xl">Photos of {place.title}</h2>
          {/* We make the button fixed even if we are scrolling we are able to still see the close photos */}
-        <button className="flex gap-1 py-2 px-4 rounded-2xl fixed shadow shadow-black">
+        <button onClick={() => setShowAllPhotos(false)} className="flex  gap-1 py-2 px-4 rounded-2xl fixed shadow shadow-black">
 
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
         <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
