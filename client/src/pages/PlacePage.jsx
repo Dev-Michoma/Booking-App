@@ -73,7 +73,7 @@ export default function PlacePage(){
         </a>
           
           <div className="relative">
-          <div className="grid gap-2 grid-cols-[2fr_1fr]">
+          <div className="grid gap-2 grid-cols-[2fr_1fr] rounded-2xl overflow-hidden">
             <div> {
                            place.photos.length > 0 && (
                           <div >  <img
@@ -119,8 +119,41 @@ export default function PlacePage(){
 
                 Show more Photos</button>
           </div>
-      </div>
 
+          <div className="my-4">
+            <h2 className="font-semibold text-1.5xl">Description</h2>
+            {place.description}
+            </div>
+
+            <div className="grid grid-cols-2">
+                <div>a
+                  Check-in :{place.checkIn} <br/>
+                  Check-out : {place.checkOut} <br/>
+                  Max number of Guests: {place.maxGuests}
+                </div>
+                <div>b
+                  <div className="bg-white shadow p-4 rounded-2xl">
+                 <div className="text-2xl  text-center">     Price : {place.price} /per night</div>
+
+                    <div className="my-4 bg-gray-200 py-4 px-4 rounded-2xl">
+                      <label>Check In:</label>
+                      <input type="date"/>
+                    </div>
+
+                    <div className="my-4 bg-gray-200 py-4 px-4 rounded-2xl">
+                      <label>Check In:</label>
+                      <input type="date"/>
+                    </div>
+                     <button className="primary">Book these Place</button>
+                  </div>
+                  
+                </div>
+            </div>
+         
+      </div>
+     
+
+     
 
 
    
