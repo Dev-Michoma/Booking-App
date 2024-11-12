@@ -61,7 +61,16 @@ export default function PlacePage(){
       <div className="mt-4 bg-gray-100 -mx-4 px-8 py-2">
         {/* place page: {id} */}
         <h1 className="text-2xl">{place.title}</h1>
-        <a className="block my-2 font-semifold underline" target="_blank "  href={'https://maps.google.com/?q=' +place.address }>{place.address}</a>
+        
+        <a className="block flex my-2 font-semifold underline" target="_blank "  href={'https://maps.google.com/?q=' +place.address }>{place.address}
+        
+        
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+</svg>
+
+        </a>
           
           <div className="relative">
           <div className="grid gap-2 grid-cols-[2fr_1fr]">
