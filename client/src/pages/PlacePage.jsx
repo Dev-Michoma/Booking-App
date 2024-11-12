@@ -77,7 +77,7 @@ export default function PlacePage(){
           <div className="grid gap-2 grid-cols-[2fr_1fr] rounded-2xl overflow-hidden">
             <div> {
                            place.photos.length > 0 && (
-                          <div >  <img
+                          <div >  <img onClick={() => setShowAllPhotos(true)}
                                 className="object-cover aspect-square"
                                 src={`http://localhost:4000/uploads/${place.photos[0]}`}
                                 alt="Image not Showing"
@@ -89,7 +89,7 @@ export default function PlacePage(){
             <div  className=" grid">
             {
                            place.photos.length > 0 && (
-                            <img
+                            <img onClick={() => setShowAllPhotos(true)}
                                 className="object-cover aspect-square"
                                 src={`http://localhost:4000/uploads/${place.photos[0]}`}
                                 alt="Image not Showing"
@@ -101,7 +101,7 @@ export default function PlacePage(){
                          <div className="overflow-hidden">
                         {
                            place.photos.length > 0 && (
-                            <img
+                            <img onClick={() => setShowAllPhotos(true)}
                                 className="object-cover aspect-square relative top-2"
                                 src={`http://localhost:4000/uploads/${place.photos[0]}`}
                                 alt="Image not Showing"
@@ -112,7 +112,7 @@ export default function PlacePage(){
                         </div>
             </div>
           </div>
-            <button onClick={() => setShowAllPhotos(true)}className=" flex gap-1 absolute bottom-2 bg-2 rounded-2xl shadow-md shadow-gray-500 right-2 py-2 px-4">
+            <button onClick={() => setShowAllPhotos(true)} className=" flex gap-1 absolute bottom-2 bg-2 rounded-2xl shadow-md shadow-gray-500 right-2 py-2 px-4">
                 
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
