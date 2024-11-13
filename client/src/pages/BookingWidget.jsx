@@ -4,7 +4,10 @@ import axios from 'axios';
 
 export default function BookingWidget({place}){
 
-   
+     const [checkIn ,setCheckIn] = useState('');
+     const [checkOut ,setCheckout] = useState('');
+     const [numberOfGuests ,setNumberOfGuests] = useState(1);
+
     
 
     return(
@@ -27,12 +30,12 @@ export default function BookingWidget({place}){
                    <div className="flex">
                    <div className=" bg-gray-200 py-3 px-4">
                       <label>Check In:</label>
-                      <input type="date"/>
+                      <input type="date" value={checkIn} onChange={ev => setCheckIn(ev.target.value)}/>
                     </div>
 
                     <div className=" bg-gray-200 py-3 px-4 border-l">
                       <label>Check In:</label>
-                      <input type="date"/>
+                      <input type="date" value={checkOut} onChange={ev => setCheckout(ev.target.value)}/>
                     </div>
 
                    </div>
@@ -40,7 +43,7 @@ export default function BookingWidget({place}){
 
                    <div className=" bg-gray-200 py-3 px-4 border-t ">
                       <label>Number of Guests:</label>
-                      <input type="number" value={1}/>
+                      <input type="number" value={numberOfGuests}  onChange={ev => setNumberOfGuests(ev.target.value)}/>
                     </div>
 
 
