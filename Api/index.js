@@ -4,6 +4,7 @@ const imageDownloader = require('image-downloader');
 const cors = require("cors");
 const { default: mongoose } = require("mongoose");
 const User = require('./Models/User.js');
+const Booking = require  ('./Models/Booking.js')
 const cookieParser = require('cookie-parser');
 const  bcrypt = require('bcryptjs');
 const Place = require('./Models/Place.js')
@@ -185,6 +186,19 @@ app.put ('/places' , async (req,res)=>{
 
 app.get('/landingpages' ,async(req,res)=>{
     res.json(await Place.find());
-})
+});
+
+app.post( '/booking' , (req,res) =>{
+
+const {place,checkIn ,checkOut ,numberOfGuests ,name ,phone ,price} =req.body;
+
+Booking.create({place,checkIn ,checkOut ,numberOfGuests ,name ,phone ,price}).
+  then((err,doc)=>
+    {
+        if (err) throw err;
+        res.json(doc);
+    });
+}
+);
 
 app.listen(4000);

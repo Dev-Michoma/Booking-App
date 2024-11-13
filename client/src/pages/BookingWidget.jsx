@@ -9,6 +9,8 @@ export default function BookingWidget({place}){
      const [checkIn ,setCheckIn] = useState('');
      const [checkOut ,setCheckout] = useState('');
      const [numberOfGuests ,setNumberOfGuests] = useState(1);
+     const [name ,setName] = useState ('');
+     const [mobile ,setMobile] = useState('');
 
     let numberOfDays = 0;
     if (checkIn && checkOut) {
@@ -53,8 +55,12 @@ export default function BookingWidget({place}){
 
                                  {
                                     numberOfDays > 0 && (
-                                        <div className="">
-                                            <input type="text" placeholder="John Doe"/>
+                                        <div className="mt-2">
+                                            <label>Your Full Name</label>
+                                            <input type="text" value={name} onChange={ev => setName(ev.target.value)} placeholder="John Doe"/>
+
+                                            <label>Your Phone number</label>
+                                            <input type="tel" value={mobile} onChange={ev => setMobile(ev.target.value)} placeholder="+254******"/>
                                         </div>
                                     )
                                  }
