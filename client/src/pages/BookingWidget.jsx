@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { differenceInCalendarDays } from 'date-fns';
+
 import axios from 'axios';
 
 export default function BookingWidget({place}){
@@ -8,7 +10,10 @@ export default function BookingWidget({place}){
      const [checkOut ,setCheckout] = useState('');
      const [numberOfGuests ,setNumberOfGuests] = useState(1);
 
-    
+    let numberOfDays = 0;
+    if (checkIn && checkOut) {
+        numberOfDays = differenceInCalendarDays(new Date(checkOut) , new Date(checkIn));
+    }
 
     return(
         <div className="grid mt-8 gap-8 grid-cols-1 md:grid-cols-[2fr_1fr]">
@@ -46,9 +51,22 @@ export default function BookingWidget({place}){
                       <input type="number" value={numberOfGuests}  onChange={ev => setNumberOfGuests(ev.target.value)}/>
                     </div>
 
-
+                                 {
+                                    numberOfDays > 0 && (
+                                        <div className="">
+                                            <input type="text" placeholder="John Doe"/>
+                                        </div>
+                                    )
+                                 }
                    </div>
-                     <button className="primary mt-4">Book these Place</button>
+                     <button className="primary mt-4">Book these Place
+
+                        {numberOfDays >0  && (
+                           <span>
+                            ${numberOfDays * place.price}
+                           </span>
+                        )}
+                     </button>
                   </div>
                   
                 </div>
