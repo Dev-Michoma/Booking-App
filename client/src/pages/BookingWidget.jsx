@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { differenceInCalendarDays } from 'date-fns';
-
+import {Navigate ,Link } from "react-router-dom";
 import axios from 'axios';
 
 export default function BookingWidget({place}){
@@ -10,12 +10,29 @@ export default function BookingWidget({place}){
      const [checkOut ,setCheckout] = useState('');
      const [numberOfGuests ,setNumberOfGuests] = useState(1);
      const [name ,setName] = useState ('');
-     const [mobile ,setMobile] = useState('');
+     const [phone ,setPhone] = useState('');
+     const [redirect ,setRedirect] = useState('');
 
-    let numberOfDays = 0;
-    if (checkIn && checkOut) {
-        numberOfDays = differenceInCalendarDays(new Date(checkOut) , new Date(checkIn));
-    }
+
+     let numberOfDays = 0;
+     if (checkIn && checkOut) {
+         numberOfDays = differenceInCalendarDays(new Date(checkOut) , new Date(checkIn));
+     }
+
+
+     async function bookThisPlace(){
+
+      const response  = await axios.post('/bookings' , {checkIn ,checkOut ,numberOfGuests ,name ,phone ,
+            place: place._id, 
+            price: numberOfDays * place.price,
+         }) 
+         const bookingId = response.data._id;
+         setRedirect (`/account/bookings/${bookingId}`);
+     }
+
+     if(redirect) {
+      return <Navigate to= {redirect}/>
+     }
 
     return(
         <div className="grid mt-8 gap-8 grid-cols-1 md:grid-cols-[2fr_1fr]">
@@ -60,12 +77,12 @@ export default function BookingWidget({place}){
                                             <input type="text" value={name} onChange={ev => setName(ev.target.value)} placeholder="John Doe"/>
 
                                             <label>Your Phone number</label>
-                                            <input type="tel" value={mobile} onChange={ev => setMobile(ev.target.value)} placeholder="+254******"/>
+                                            <input type="tel" value={phone} onChange={ev => setPhone(ev.target.value)} placeholder="+254******"/>
                                         </div>
                                     )
                                  }
                    </div>
-                     <button className="primary mt-4">Book these Place
+                     <button onClick={bookThisPlace} className="primary mt-4">Book these Place
 
                         {numberOfDays >0  && (
                            <span>

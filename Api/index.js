@@ -188,17 +188,17 @@ app.get('/landingpages' ,async(req,res)=>{
     res.json(await Place.find());
 });
 
-app.post( '/booking' , (req,res) =>{
+app.post('/bookings', async (req, res) => {
+    const { place, checkIn, checkOut, numberOfGuests, name, phone, price } = req.body;
 
-const {place,checkIn ,checkOut ,numberOfGuests ,name ,phone ,price} =req.body;
-
-Booking.create({place,checkIn ,checkOut ,numberOfGuests ,name ,phone ,price}).
-  then((err,doc)=>
-    {
-        if (err) throw err;
+    try {
+        const doc = await Booking.create({ place, checkIn, checkOut, numberOfGuests, name, phone, price });
         res.json(doc);
-    });
-}
-);
+    } catch (err) {
+        console.error(err); // Log the error
+        res.status(500).json({ error: 'Internal Server Error', details: err.message });
+    }
+});
+
 
 app.listen(4000);

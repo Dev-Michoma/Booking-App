@@ -34,6 +34,8 @@ function App() {
     {/* <Route path="/account/:subpage?" element={<AccountPage/>}/>
     <Route path="/account/:subpage/:action" element={<AccountPage/>}/> */}
     <Route path="/account" element={<AccountPage/>}/>
+    <Route path="/account/bookings" element={<AccountPage/>}/>
+    <Route path="/account/bookings/:id" element={<PlacePage />} />
     <Route path="/account/places" element={<PlacesPage/>}/>
     {/* <Route path="/account/bookings" element={<BookingsPage/>}/> */}
     <Route path="/account/places/new" element={<PlacesformPage/>}/>
