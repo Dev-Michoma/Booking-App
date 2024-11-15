@@ -4,7 +4,7 @@ import { differenceInCalendarDays } from 'date-fns';
 import {Navigate ,Link } from "react-router-dom";
 import axios from 'axios';
 
-export default function BookingWidget({place}){
+export default function BookingWidget({place }){
 
      const [checkIn ,setCheckIn] = useState('');
      const [checkOut ,setCheckout] = useState('');
@@ -21,7 +21,7 @@ export default function BookingWidget({place}){
 
 
      async function bookThisPlace(){
-
+      //Calculating the total Price in the  booking section
       const response  = await axios.post('/bookings' , {checkIn ,checkOut ,numberOfGuests ,name ,phone ,
             place: place._id, 
             price: numberOfDays * place.price,
