@@ -14,6 +14,7 @@ import {createContext} from "react";
 import { UserContextProvider } from './UserContext';
 import PlacesformPage from './pages/PlacesformPage';
 import PlacePage from './pages/PlacePage';
+import ChatPage from './pages/ChatPage';
 
 axios.defaults.baseURL = 'http://localhost:4000';
 //To send cookies with Axios, you must set the withCredentials 
@@ -37,6 +38,7 @@ function App() {
     <Route path="/account/bookings" element={<AccountPage/>}/>
     <Route path="/account/bookings/:id" element={<PlacePage />} />
     <Route path="/account/places" element={<PlacesPage/>}/>
+    <Route path="/account/chats" element={<ChatPage/>}/>
     {/* <Route path="/account/bookings" element={<BookingsPage/>}/> */}
     <Route path="/account/places/new" element={<PlacesformPage/>}/>
     <Route path="/account/places/:id" element={<PlacesformPage/>}/>

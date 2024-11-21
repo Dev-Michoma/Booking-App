@@ -5,6 +5,7 @@ import {Navigate ,Link ,useParams} from "react-router-dom";
 import axios from "axios";
 import PlacesPage from "./Places.jsx";
 import AccountNav from "./AccountNav.jsx";
+import ChatPage from "./ChatPage.jsx";
 
 
 export default function AccountPage(){
@@ -22,6 +23,8 @@ export default function AccountPage(){
 
     let {subpage}  = useParams();
        console.log(subpage);
+
+     
        if(subpage ===undefined){
         subpage = 'profile';
        }
@@ -69,6 +72,15 @@ export default function AccountPage(){
         }
           {
           subpage === 'places' && (
+            <div>
+              
+              <PlacesPage/>
+            </div>
+          )
+        }
+
+      {
+          subpage === 'chats' && (
             <div>
               
               <PlacesPage/>
