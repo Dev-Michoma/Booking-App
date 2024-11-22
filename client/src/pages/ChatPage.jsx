@@ -5,11 +5,15 @@ import axios from 'axios';
 import AccountNav from "./AccountNav";
 
 export default function ChatPage(){
+
+    useEffect(()=>{
+         new WebSocket('ws://localhost:4000')
+    },[]);
     return (
      <div>
     <AccountNav/>
       
-      <div className="flex h-screen border-2 h-[75vh] border-gray-300 mx-64">
+      <div className="flex h-screen border-2 rounded-lg h-[75vh] border-gray-300 mx-64">
       <div className="bg-blue-100 w-1/3">Contacts</div>
       <div className="bg-blue-300    flex  flex-col w-2/3">
       <div className="flex-grow mt-4 mx-6">Messages With Selected Person</div>

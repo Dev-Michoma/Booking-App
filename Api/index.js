@@ -14,6 +14,7 @@ require('dotenv').config()
 const app = express();
 const  bcryptSalt = bcrypt.genSaltSync(10);
 const jwtSecret = "jdjvjndjvnhvksndvjnjv";
+const ws = require('ws');
 
 app.use(express.json());
 app.use(cookieParser());
@@ -201,4 +202,10 @@ app.post('/bookings', async (req, res) => {
 });
 
 
-app.listen(4000);
+const server = app.listen(4000);
+// console.log(server)
+
+const wss = new ws.WebSocketServer({server});
+wss.on ('connection' , (connection)=> {
+    console.log('connected');
+})
