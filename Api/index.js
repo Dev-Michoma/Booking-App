@@ -227,5 +227,5 @@ wss.on ('connection' , (connection ,req)=> {
         });
     }
     }
-    
+    console.log([...wss.clients].length);
 })
