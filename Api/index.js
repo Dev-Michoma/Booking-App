@@ -230,6 +230,14 @@ wss.on ('connection' , (connection ,req)=> {
     }
    //checking the connected user
    console.log('Usernames of connected clients:', [...wss.clients].map(c => c.username));
-    //  console.log([...wss.clients].length);
+ // console.log([...wss.clients].length);
+
+ [...wss.clients].forEach(client => {
+    client.send(JSON.stringify(
+     { online: [...wss.clients].map(c => ({userId:c.userId , username: c.username}))}
+
+
+    ));
+ })
      
 })

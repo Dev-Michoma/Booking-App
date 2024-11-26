@@ -3,25 +3,62 @@ import { useParams } from "react-router-dom";
 import BookingWidget from "./BookingWidget";
 import axios from 'axios';
 import AccountNav from "./AccountNav";
+import Avator from "./Avator";
 
 export default function ChatPage(){
+
    
     const [ws ,setWs] =useState(null);
+    const [onlinePeople ,setOnlinePeople] = useState({});
+    const [selectedUserId ,setSelectedUserId] = useState(null);
     useEffect(()=>{
        const ws =  new WebSocket('ws://localhost:4000')
        setWs(ws);
        ws.addEventListener('message' ,handleMessage)
     },[]);
+    function showOnlinePeople(peopleArray){
+      // console.log(people);
+      const people = {};
+      peopleArray.forEach(({userId ,username}) => {
+        people[userId] = username;
+      })
+      // console.log(people);
+      setOnlinePeople(people);
+    }
 
-    function handleMessage(e){
-        console.log('new message' , e);
+   function selectContact(userId){
+
+   }
+
+
+    function handleMessage(ev){
+        // console.log('new message' , e);
+        // console.log(ev.data);
+
+        const messageData  = JSON.parse(ev.data);
+        // console.log(messageData)
+        if ('online' in messageData) {
+          showOnlinePeople(messageData.online)
+        }
     }
     return (
      <div>
     <AccountNav/>
       
       <div className="flex h-screen border-2 rounded-lg h-[65vh] border-gray-300 mx-64">
-      <div className="bg-blue-100 w-1/3">Contacts</div>
+      <div className="bg-blue-100 w-1/3 p-2">
+
+      <div className="text-blue-800 font-bold">
+        AfriChat
+      </div>
+      
+       {Object.keys(onlinePeople).map(userId =>(
+        <div key= {userId}onClick = {() => setSelectedUserId(userId)} className="border-b cursor-pointer border-gray-100 flex items-center gap-2  py-2"> 
+          <Avator username={onlinePeople} userId={userId}/>
+          <span>{onlinePeople[userId]}</span>
+          </div>
+       )) }
+      </div>
       <div className="bg-blue-300    flex  flex-col w-2/3">
       <div className="flex-grow mt-4 mx-6">Messages With Selected Person</div>
 
