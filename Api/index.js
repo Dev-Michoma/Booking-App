@@ -219,13 +219,17 @@ wss.on ('connection' , (connection ,req)=> {
     if(token){
         jwt.verify(token, jwtSecret ,{} ,(err,userData) =>{
            if(err ) throw err;
-        //    console.log(userData);
-        const {userId ,username} = userData;
+           
+        const {id:userId ,name:username} = userData;
         connection.userId =  userId;
         connection.username = username;
-
+        // console.log(userData);
+        
         });
     }
     }
-    console.log([...wss.clients].length);
+   //checking the connected user
+   console.log('Usernames of connected clients:', [...wss.clients].map(c => c.username));
+    //  console.log([...wss.clients].length);
+     
 })
