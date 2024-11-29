@@ -205,6 +205,7 @@ app.post('/bookings', async (req, res) => {
 const server = app.listen(4000);
 // console.log(server)
 
+//initialization of the Websockets
 const wss = new ws.WebSocketServer({server});
 wss.on ('connection' , (connection ,req)=> {
     // console.log('connected');
