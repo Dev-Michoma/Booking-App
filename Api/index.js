@@ -233,11 +233,22 @@ wss.on ('connection' , (connection ,req)=> {
    console.log('Usernames of connected clients:', [...wss.clients].map(c => c.username));
  // console.log([...wss.clients].length);
 
+
+     connection.on('message' , (message,isBinary) => {
+            //   console.log(message);
+         const  messageData= JSON.parse(message.toString());
+            console.log(messageData)
+             const {recipient ,text}  = messageData;
+            if(recipient && text) {
+                 [...wss.clients].filter(c => c.userId === recipient).forEach(c => c.send(JSON.stringify({text}))) 
+             }
+
+     });
+
+
  [...wss.clients].forEach(client => {
     client.send(JSON.stringify(
      { online: [...wss.clients].map(c => ({userId:c.userId , username: c.username}))}
-
-
     ));
  })
      

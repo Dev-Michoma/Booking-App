@@ -3,7 +3,7 @@ export default function Avator({userId ,username}){
   const userIdBase10 = isNaN(parseInt(userId, 16)) ? 0 : parseInt(userId, 16);
   const colorIndex = userIdBase10 % colors.length;
   const color = colors[colorIndex]
-  console.log(color)
+//   console.log(color)
   
     return(
           <div className={"w-10 h-10  rounded-full flex items-center "+color} > 

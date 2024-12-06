@@ -6,12 +6,14 @@ import AccountNav from "./AccountNav";
 import Avator from "./Avator";
 import { UserContext } from "../UserContext";
 
+
 export default function ChatPage(){
 
    
     const [ws ,setWs] =useState(null);
     const [onlinePeople ,setOnlinePeople] = useState({});
     const [selectedUserId ,setSelectedUserId] = useState(null);
+    const [newMessageText , setNewMessageText] = useState("null")
     const {name ,userId } = useContext(UserContext);
     
     useEffect(()=>{
@@ -47,7 +49,19 @@ export default function ChatPage(){
 
     // const onlinePeopleExclOurUser = {...onlinePeople};
     // delete onlinePeopleExclOurUser[id];
-
+     function sendMessage(ev){
+              ev.preventDefault();
+              console.log('sending')
+              ws.send(JSON.stringify(
+               {
+                  recipient: selectedUserId,
+                  text: newMessageText,
+                }
+               
+              )
+              // ws.send('test');
+             );
+     }
 
     return (
      <div>
@@ -88,16 +102,22 @@ export default function ChatPage(){
         }
         </div>
 
-
-      <div className="flex  bottom-28 left-0 w-full p-4 mx-2 "> 
-       <input type="text" className="bg-white border bottom-0 p-2 w-4 " placeholder="Type Your Message Here"/>
-         <button className="mx-4 bg-blue-300">
-         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-        <path strokeLinecap="round" strokeLinejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-        </svg>
-         </button>
-         
-      </div>
+        {!!selectedUserId && (
+           <form className="flex  bottom-28 left-0 w-full p-4 mx-2 " onSubmit={sendMessage}> 
+           <input type="text" 
+           value ={newMessageText}
+           onChange={ev => setNewMessageText(ev.target.value)}
+           className="bg-white border bottom-0 p-2 w-4 "
+            placeholder="Type Your Message Here"/>
+             <button type="submit" className="mx-4 bg-blue-300">
+             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+            </svg>
+             </button>
+             
+          </form>
+        )}
+     
 
       </div>
       </div>
