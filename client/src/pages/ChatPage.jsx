@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import BookingWidget from "./BookingWidget";
 import axios from 'axios';
 import AccountNav from "./AccountNav";
 import Avator from "./Avator";
+import { UserContext } from "../UserContext";
 
 export default function ChatPage(){
 
@@ -11,6 +12,8 @@ export default function ChatPage(){
     const [ws ,setWs] =useState(null);
     const [onlinePeople ,setOnlinePeople] = useState({});
     const [selectedUserId ,setSelectedUserId] = useState(null);
+    const {name ,userId } = useContext(UserContext);
+    
     useEffect(()=>{
        const ws =  new WebSocket('ws://localhost:4000')
        setWs(ws);
@@ -41,14 +44,20 @@ export default function ChatPage(){
           showOnlinePeople(messageData.online)
         }
     }
+
+    // const onlinePeopleExclOurUser = {...onlinePeople};
+    // delete onlinePeopleExclOurUser[id];
+
+
     return (
      <div>
     <AccountNav/>
       
-      <div className="flex h-screen border-2 rounded-lg h-[60vh] border-gray-300 mx-64">
-      <div className="bg-blue-100 w-1/3 p-2">
+      <div className="flex h-screen border-2rounded-lg h-[60vh] border-gray-300 mx-64">
+      <div className="bg-blue-100  pl-4  w-1/3 p-2">
 
       <div className="text-blue-800 font-bold">
+       
         AfriChat
       </div>
       
@@ -57,15 +66,27 @@ export default function ChatPage(){
        // Instead of using string concatenation (+), 
        // it's more common and reliable to use template literals for conditional classes in JSX.
        //  This ensures that the classes are correctly concatenated and more readable.
-      className={`border-b cursor-pointer border-gray-100 flex items-center gap-2 py-2 ${userId === selectedUserId ? 'bg-blue-200' : ''}`}
+      className={`border-b mt-2 cursor-pointer border-gray-100 flex items-center gap-2 py-2 ${userId === selectedUserId ? 'bg-blue-200' : ''}`}
 > 
+          <div>
+          {userId ===selectedUserId &&(
+            <div className="w-1 bg-blue-500 h-12 rounded-r-md"> </div>
+           )}
+          </div>
+
           <Avator username={onlinePeople[userId]} userId={userId}/>
           <span>{onlinePeople[userId]}</span>
           </div>
        )) }
       </div>
       <div className="bg-blue-300    flex  flex-col w-2/3">
-      <div className="flex-grow mt-4 mx-6">Messages With Selected Person</div>
+      <div className="flex-grow mt-4 mx-6">
+        {
+          !selectedUserId && (
+            <div>No Selected Person</div>
+          )
+        }
+        </div>
 
 
       <div className="flex  bottom-28 left-0 w-full p-4 mx-2 "> 
