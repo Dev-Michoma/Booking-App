@@ -54,7 +54,7 @@ export default function ChatPage(){
       
        {Object.keys(onlinePeople).map(userId =>(
         <div key= {userId}onClick = {() => setSelectedUserId(userId)} className="border-b cursor-pointer border-gray-100 flex items-center gap-2  py-2"> 
-          <Avator username={onlinePeople} userId={userId}/>
+          <Avator username={onlinePeople[userId]} userId={userId}/>
           <span>{onlinePeople[userId]}</span>
           </div>
        )) }
