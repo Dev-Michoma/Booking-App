@@ -45,7 +45,7 @@ export default function ChatPage(){
      <div>
     <AccountNav/>
       
-      <div className="flex h-screen border-2 rounded-lg h-[65vh] border-gray-300 mx-64">
+      <div className="flex h-screen border-2 rounded-lg h-[60vh] border-gray-300 mx-64">
       <div className="bg-blue-100 w-1/3 p-2">
 
       <div className="text-blue-800 font-bold">
@@ -53,7 +53,12 @@ export default function ChatPage(){
       </div>
       
        {Object.keys(onlinePeople).map(userId =>(
-        <div key= {userId}onClick = {() => setSelectedUserId(userId)} className="border-b cursor-pointer border-gray-100 flex items-center gap-2  py-2"> 
+        <div key= {userId}  onClick = {() => setSelectedUserId(userId)} 
+       // Instead of using string concatenation (+), 
+       // it's more common and reliable to use template literals for conditional classes in JSX.
+       //  This ensures that the classes are correctly concatenated and more readable.
+      className={`border-b cursor-pointer border-gray-100 flex items-center gap-2 py-2 ${userId === selectedUserId ? 'bg-blue-200' : ''}`}
+> 
           <Avator username={onlinePeople[userId]} userId={userId}/>
           <span>{onlinePeople[userId]}</span>
           </div>
