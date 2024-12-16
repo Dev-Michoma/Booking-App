@@ -5,7 +5,7 @@ import axios from 'axios';
 import AccountNav from "./AccountNav";
 import Avator from "./Avator";
 import { UserContext } from "../UserContext";
-
+import { uniqBy } from 'lodash';
 
 export default function ChatPage(){
 
@@ -45,8 +45,7 @@ export default function ChatPage(){
         if ('online' in messageData) {
           showOnlinePeople(messageData.online)
         }
-        else{
-         
+        else if('text' in messageData){ 
          setMessages(prev => ([...prev, {isOur:false ,text:messageData.text}]));
         }
     }
@@ -64,6 +63,9 @@ export default function ChatPage(){
                 setNewMessageText('');
                 setMessages(prev => ([...prev , {text: newMessageText ,isOur:true}]));
      }
+
+
+       const messagesWithoutDupes = uniqBy(messages ,'id')
 
     return (
      <div>
@@ -105,7 +107,7 @@ export default function ChatPage(){
           {!!selectedUserId && (
                     <div>
                       {
-                        messages.map(message => (
+                        messagesWithoutDupes.map(message => (
                           <div>{message.text} </div>
                         ))
                       }
