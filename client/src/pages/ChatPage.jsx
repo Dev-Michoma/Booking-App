@@ -39,15 +39,15 @@ export default function ChatPage(){
 
     function handleMessage(ev){
         // console.log('new message' , e);
-        // console.log(ev.data);
-
         const messageData  = JSON.parse(ev.data);
-        console.log(messageData)
+        console.log({ev ,messageData})
+        // console.log({ev ,messageData});
         if ('online' in messageData) {
           showOnlinePeople(messageData.online)
         }
         else{
-          console.log({messageData});
+         
+         setMessages(prev => ([...prev, {isOur:false ,text:messageData.text}]));
         }
     }
 
@@ -69,7 +69,7 @@ export default function ChatPage(){
      <div>
     <AccountNav/>
       
-      <div className="flex h-screen border-2rounded-lg h-[56vh] border-gray-300 mx-64">
+      <div className="flex h-screen border-2rounded-lg h-[57vh] border-gray-300 mx-64">
       <div className="bg-blue-100  pl-4  w-1/3 p-2">
 
       <div className="text-blue-800 font-bold">

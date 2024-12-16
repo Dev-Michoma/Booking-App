@@ -4,6 +4,7 @@ const imageDownloader = require('image-downloader');
 const cors = require("cors");
 const { default: mongoose } = require("mongoose");
 const User = require('./Models/User.js');
+const Message = require ('./Models/Message.js');
 const Booking = require  ('./Models/Booking.js')
 const cookieParser = require('cookie-parser');
 const  bcrypt = require('bcryptjs');
@@ -234,13 +235,20 @@ wss.on ('connection' , (connection ,req)=> {
  // console.log([...wss.clients].length);
 
 
-     connection.on('message' , (message,isBinary) => {
+     connection.on('message' , async(message,isBinary) => {
             //   console.log(message);
          const  messageData= JSON.parse(message.toString());
             console.log(messageData)
              const {recipient ,text}  = messageData;
             if(recipient && text) {
-                 [...wss.clients].filter(c => c.userId === recipient).forEach(c => c.send(JSON.stringify({text}))) 
+            const messageDoc =  await  Message.create({
+                      sender:connection.userId,
+                      recipient,
+                      text,
+                });
+                 [...wss.clients].filter(c => c.userId === recipient).forEach(c => c.send(JSON.stringify({
+                    text,sender: connection.userId ,id: messageDoc._id,
+                 }))) 
              }
 
      });
