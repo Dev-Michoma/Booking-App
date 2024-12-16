@@ -13,7 +13,8 @@ export default function ChatPage(){
     const [ws ,setWs] =useState(null);
     const [onlinePeople ,setOnlinePeople] = useState({});
     const [selectedUserId ,setSelectedUserId] = useState(null);
-    const [newMessageText , setNewMessageText] = useState("null")
+    const [newMessageText , setNewMessageText] = useState("")
+    const [messages ,setMessages] = useState([]);
     const {name ,userId } = useContext(UserContext);
     
     useEffect(()=>{
@@ -41,9 +42,12 @@ export default function ChatPage(){
         // console.log(ev.data);
 
         const messageData  = JSON.parse(ev.data);
-        // console.log(messageData)
+        console.log(messageData)
         if ('online' in messageData) {
           showOnlinePeople(messageData.online)
+        }
+        else{
+          console.log({messageData});
         }
     }
 
@@ -56,18 +60,16 @@ export default function ChatPage(){
                {
                   recipient: selectedUserId,
                   text: newMessageText,
-                }
-               
-              )
-              // ws.send('test');
-             );
+                }));
+                setNewMessageText('');
+                setMessages(prev => ([...prev , {text: newMessageText ,isOur:true}]));
      }
 
     return (
      <div>
     <AccountNav/>
       
-      <div className="flex h-screen border-2rounded-lg h-[60vh] border-gray-300 mx-64">
+      <div className="flex h-screen border-2rounded-lg h-[56vh] border-gray-300 mx-64">
       <div className="bg-blue-100  pl-4  w-1/3 p-2">
 
       <div className="text-blue-800 font-bold">
@@ -100,8 +102,18 @@ export default function ChatPage(){
             <div>No Selected Person</div>
           )
         }
+          {!!selectedUserId && (
+                    <div>
+                      {
+                        messages.map(message => (
+                          <div>{message.text} </div>
+                        ))
+                      }
+                    </div>
+        )
+        }
         </div>
-
+      
         {!!selectedUserId && (
            <form className="flex  bottom-28 left-0 w-full p-4 mx-2 " onSubmit={sendMessage}> 
            <input type="text" 
