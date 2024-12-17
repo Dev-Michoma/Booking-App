@@ -46,12 +46,15 @@ export default function ChatPage(){
           showOnlinePeople(messageData.online)
         }
         else if('text' in messageData){ 
-         setMessages(prev => ([...prev, {isOur:false ,text:messageData.text}]));
+        //  setMessages(prev => ([...prev, {sender:userId, recipient:selectedUserId ,text:messageData.text}]));
+         setMessages(prev => ([...prev, {...messageData}]));
         }
     }
 
-    // const onlinePeopleExclOurUser = {...onlinePeople};
-    // delete onlinePeopleExclOurUser[id];
+    const onlinePeopleExclOurUser = {...onlinePeople};
+    delete onlinePeopleExclOurUser[userId];
+
+
      function sendMessage(ev){
               ev.preventDefault();
               console.log('sending')
@@ -65,13 +68,13 @@ export default function ChatPage(){
      }
 
 
-       const messagesWithoutDupes = uniqBy(messages ,'id')
-
+       const messagesWithoutDupes = uniqBy(messages ,'id');
+       console.log(messagesWithoutDupes);
     return (
      <div>
     <AccountNav/>
       
-      <div className="flex h-screen border-2rounded-lg h-[57vh] border-gray-300 mx-64">
+      <div className="flex h-screen border-2rounded-lg h-[58vh] border-gray-300 mx-64">
       <div className="bg-blue-100  pl-4  w-1/3 p-2">
 
       <div className="text-blue-800 font-bold">
